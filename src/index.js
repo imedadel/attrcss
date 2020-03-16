@@ -8,11 +8,15 @@ const prog = sade("attrcss");
 prog.version(pkg.version);
 
 prog
-  .command("build [src] [dest]")
+  .command("build")
+  .option("--output, -o", "CSS output file")
   .describe(
-    "Build the main CSS theme. Expects a `.json` entry file and a `.css` output file."
+    "Build the main CSS theme. Expects an optional `.json` entry file and an optional `.css` output file."
   )
-  .example("build ./theme.json theme.css ")
+  .example("build")
+  .example("build -o theme.css")
+  .example("build -i ./theme.json -o theme.css")
+  .example("build --input ./theme.json --output theme.css")
   .action(buildAction);
 
 prog.parse(process.argv);

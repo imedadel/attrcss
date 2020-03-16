@@ -1,8 +1,10 @@
 const fs = require("fs");
 const { generator } = require("./generator");
 
-function buildAction(src, dest = "attr.css", opts) {
-  console.log(`> building from ${src} to ${dest}`);
+function buildAction(opts) {
+  const src = opts.input || null;
+  const dest = opts.output || "attr.css";
+  console.log(`> building from ${src || `default theme`} to ${dest}`);
   const generatedCss = generator(src);
   fs.writeFile(dest, generatedCss, err => {
     if (err) {
