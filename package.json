@@ -1,12 +1,22 @@
 {
 	"name": "attrcss",
+	"description": "TailwindCSS using data attributes",
+	"author": "Imed Adel <aadelimed@gmail.com>",
 	"version": "0.1.0",
-	"main": "index.js",
+	"main": "./src/index.js",
 	"bin": {
 		"attrcss": "./src/index.js"
 	},
 	"license": "MIT",
 	"dependencies": {
 		"sade": "^1.7.3"
-	}
+	},
+	"keywords": [
+		"tailwindcss",
+		"attributes",
+		"html",
+		"data",
+		"css",
+		"framework"
+	]
 }
