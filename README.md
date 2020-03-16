@@ -12,10 +12,16 @@
 
 ## Usage
 
-This command generates a CSS file that can be used in your project.
+This command generates an `attr.css` file that can be used in your project:
 
 ```shell
 npx attrcss build
+```
+
+You can specify a custom `.json` theme file or a different `.css` output file too:
+
+```shell
+npx attrcss build --input customTheme.json --output main.css
 ```
 
 PS. **Use PurgeCSS!**
