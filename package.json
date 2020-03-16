@@ -6,7 +6,8 @@
   "version": "0.0.1",
   "main": "./src/index.js",
   "bin": {
-    "attrcss": "./src/index.js"
+    "attrcss": "./src/index.js",
+    "attr": "./src/index.js"
   },
   "license": "MIT",
   "dependencies": {
