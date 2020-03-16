@@ -1,0 +1,12 @@
+{
+	"name": "attrcss",
+	"version": "0.1.0",
+	"main": "index.js",
+	"bin": {
+		"attrcss": "./src/index.js"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"sade": "^1.7.3"
+	}
+}
