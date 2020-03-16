@@ -25,4 +25,5 @@ npx attrcss build --input customTheme.json --output main.css
 ```
 
 PS. **Use PurgeCSS!**
+
 PPS. I only implemented TailwindCSS colors. I got bored after that 🦦
