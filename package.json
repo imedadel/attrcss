@@ -2,6 +2,7 @@
   "name": "attrcss",
   "description": "TailwindCSS using data attributes",
   "author": "Imed Adel <aadelimed@gmail.com>",
+  "repository": "https://github.com/ImedAdel/attrcss.git",
   "version": "0.0.1",
   "main": "./src/index.js",
   "bin": {
