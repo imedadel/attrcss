@@ -9,6 +9,10 @@
     "attrcss": "./src/index.js",
     "attr": "./src/index.js"
   },
+  "files": [
+    "src",
+    "dist"
+  ],
   "license": "MIT",
   "dependencies": {
     "deepmerge": "^4.2.2",
