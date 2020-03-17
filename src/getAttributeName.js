@@ -1,4 +1,11 @@
-function getAttributeName({ name, prefix, variant, separator, screen, keys }) {
+function getAttributeName({
+  aliasName,
+  prefix,
+  variant,
+  separator,
+  screen,
+  keys
+}) {
   let attributeName = `[data-`;
   if (!!prefix) {
     attributeName += `${prefix}-`;
@@ -9,7 +16,7 @@ function getAttributeName({ name, prefix, variant, separator, screen, keys }) {
   if (!!variant) {
     attributeName += `${variant}-`;
   }
-  attributeName += `${name}="${keys[0]}`;
+  attributeName += `${aliasName}="${keys[0]}`;
   if (!!keys[1]) {
     attributeName += `${separator}${keys[1]}`;
   }

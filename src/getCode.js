@@ -3,6 +3,7 @@ const { getAttributeName } = require("./getAttributeName");
 
 const getCode = ({
   name,
+  aliasName,
   prefix,
   variants = [],
   separator,
@@ -11,7 +12,7 @@ const getCode = ({
   keys
 }) => {
   let code = `${getAttributeName({
-    name,
+    aliasName,
     prefix,
     separator,
     screen,
@@ -27,7 +28,7 @@ const getCode = ({
       }
 
       code += `${getAttributeName({
-        name,
+        aliasName,
         prefix,
         separator,
         screen,

@@ -16,7 +16,8 @@ function propertyObjectToCss({
       [name, ...alias].forEach(a => {
         generatedCss += getCode({
           keys: [key],
-          name: a,
+          name,
+          aliasName: a,
           prefix,
           separator,
           screen,
@@ -28,7 +29,8 @@ function propertyObjectToCss({
       [name, ...alias].forEach(a => {
         generatedCss += getCode({
           keys: [key],
-          name: a,
+          name,
+          aliasName: a,
           prefix,
           separator,
           screen,
@@ -41,7 +43,8 @@ function propertyObjectToCss({
         [name, ...alias].forEach(a => {
           generatedCss += getCode({
             keys: [key, subKey],
-            name: a,
+            name,
+            aliasName: a,
             prefix,
             separator,
             screen,
