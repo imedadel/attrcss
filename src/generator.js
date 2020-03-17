@@ -1,3 +1,4 @@
+const deepmerge = require("deepmerge");
 const { generateAllScreensCss } = require("./generateAllScreensCss");
 const defaultJson = require("./defaultTheme.json");
 const entries = args => Object.entries(args);
