@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "deepmerge": "^4.2.2",
+    "fs-extra": "^8.1.0",
     "lodash.kebabcase": "^4.1.1",
     "sade": "^1.7.3"
   },

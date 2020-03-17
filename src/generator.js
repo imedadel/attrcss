@@ -1,11 +1,22 @@
 const deepmerge = require("deepmerge");
+const fs = require("fs-extra");
 const { generateAllScreensCss } = require("./generateAllScreensCss");
 const defaultJson = require("./defaultTheme.json");
 const entries = args => Object.entries(args);
 
-function generator(src) {
-  // Deep merge is there is a user-defined theme
-  const parsed = !!src ? deepmerge(defaultJson, require(src)) : defaultJson;
+async function generator(src) {
+  let customTheme = {};
+  if (!!src) {
+    try {
+      customTheme = await fs.readJson(src);
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+  }
+
+  // Deep merge if there is a user-defined theme
+  const parsed = !!src ? deepmerge(defaultJson, customTheme) : defaultJson;
 
   // Extract the main theme variables
   const {

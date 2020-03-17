@@ -1,10 +1,10 @@
-const fs = require("fs");
+const fs = require("fs-extra");
 const { generator } = require("./generator");
 
 const isValidOutputFile = path => RegExp(/\.(css|sass|scss)$/).test(path);
 const isValidInputFile = path => RegExp(/\.(json)$/).test(path);
 
-function buildAction(opts) {
+async function buildAction(opts) {
   if (!!opts.input && !isValidInputFile(opts.input)) {
     console.error("> The theme must be a JSON file :)");
     return;
@@ -17,17 +17,22 @@ function buildAction(opts) {
 
   const src = opts.input || null;
   const dest = opts.output || "attr.css";
-  console.log(`> Building from ${src || `the default theme`} to ${dest}`);
+  console.log(`> Building from ${src || `the default theme`} to ${dest}...`);
 
-  const generatedCss = generator(src);
+  const themePathIsCorrect = await fs.pathExists(src);
+  if (!!src && !themePathIsCorrect) {
+    console.log("> 🛑 Hmmm... Are you sure of the path? 🤔\n");
+    return;
+  }
 
-  fs.writeFile(dest, generatedCss, err => {
-    if (err) {
-      console.log("> Oopsie :( Try again, maybe?\n");
-      console.error(err);
-      return;
-    }
+  const generatedCss = await generator(src);
+
+  try {
+    await fs.outputFile(dest, generatedCss);
     console.log("> Done! 🦦");
-  });
+  } catch (err) {
+    console.log("> 🛑 Oopsie. Try again, maybe? 🤔\n");
+    console.error(err);
+  }
 }
 exports.buildAction = buildAction;
