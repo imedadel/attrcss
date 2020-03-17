@@ -9,6 +9,11 @@
     "attrcss": "./src/index.js",
     "attr": "./src/index.js"
   },
+  "scripts": {
+    "build:css": "node ./src/index.js build",
+    "minify:css": "postcss attr.css > dist/attr.css",
+    "prepare": "yarn build:css && yarn minify:css"
+  },
   "files": [
     "src",
     "dist"
@@ -29,7 +34,9 @@
     "framework"
   ],
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "husky": "^4.2.3",
+    "postcss-cli": "^7.1.0",
     "prettier": "1.19.1",
     "pretty-quick": "^2.0.1"
   },
