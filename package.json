@@ -11,6 +11,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "deepmerge": "^4.2.2",
+    "lodash.kebabcase": "^4.1.1",
     "sade": "^1.7.3"
   },
   "keywords": [

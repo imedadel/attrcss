@@ -1,35 +1,57 @@
-const { getAttributeName } = require("./getAttributeName");
+const { getCode } = require("./getCode");
 const entries = args => Object.entries(args);
 
 function propertyObjectToCss({
-  cssProperty,
-  dataProperty = cssProperty,
-  sourceObject,
+  name,
+  alias,
+  options,
+  prefix,
+  variants = [],
   separator,
   screen
 }) {
   let generatedCss = ``;
-  for (const [key, value] of entries(sourceObject)) {
+  for (const [key, value] of options) {
     if (typeof value === "string") {
-      generatedCss += `${getAttributeName({
-        dataProperty,
-        key,
-        screen,
-        separator
-      })} { ${cssProperty}: ${value}; }
-			`;
-    }
-    if (typeof value === "object") {
-      for (const [subKey, subValue] of entries(value)) {
-        generatedCss += `${getAttributeName({
-          dataProperty,
-          subKey,
-          key,
+      [name, ...alias].forEach(a => {
+        generatedCss += getCode({
+          keys: [key],
+          name: a,
+          prefix,
+          separator,
           screen,
-          separator
-        })} { ${cssProperty}: ${subValue}; }
-				`;
+          value,
+          variants
+        });
+      });
+    } else if (Array.isArray(value)) {
+      [name, ...alias].forEach(a => {
+        generatedCss += getCode({
+          keys: [key],
+          name: a,
+          prefix,
+          separator,
+          screen,
+          value,
+          variants
+        });
+      });
+    } else if (typeof value === "object") {
+      for (const [subKey, subValue] of entries(value)) {
+        [name, ...alias].forEach(a => {
+          generatedCss += getCode({
+            keys: [key, subKey],
+            name: a,
+            prefix,
+            separator,
+            screen,
+            value: subValue,
+            variants
+          });
+        });
       }
+    } else {
+      throw new Error("Type of value is different than expected :o");
     }
   }
   return generatedCss;

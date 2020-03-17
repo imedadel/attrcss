@@ -3,13 +3,27 @@ const defaultJson = require("./defaultTheme.json");
 const entries = args => Object.entries(args);
 
 function generator(src) {
-  const parsed = !!src ? require(src) : defaultJson;
-  const separator = parsed.separator;
-  const css = generateAllScreensCss({
+  // Deep merge is there is a user-defined theme
+  const parsed = !!src ? deepmerge(defaultJson, require(src)) : defaultJson;
+
+  // Extract the main theme variables
+  const {
     separator,
-    parsedTheme: parsed.theme,
-    screens: [null, ...entries(parsed.theme.screens)]
+    prefix,
+    theme: { screens, colors, spacing, ...properties },
+    variants
+  } = parsed;
+
+  const css = generateAllScreensCss({
+    prefix,
+    separator,
+    screens: entries(screens),
+    colors,
+    spacing,
+    properties: entries(properties),
+    variants
   });
+
   // for some reason, there are lot sof tabs!!!
   return css.replace(/\t/gi, "");
 }

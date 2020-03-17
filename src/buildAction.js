@@ -20,6 +20,7 @@ function buildAction(opts) {
   console.log(`> Building from ${src || `the default theme`} to ${dest}`);
 
   const generatedCss = generator(src);
+
   fs.writeFile(dest, generatedCss, err => {
     if (err) {
       console.log("> Oopsie :( Try again, maybe?\n");
