@@ -9,6 +9,7 @@ prog.version(pkg.version);
 
 prog
   .command("build")
+  .option("--input, -i", "Theme JSON file")
   .option("--output, -o", "CSS output file")
   .describe(
     "Build the main CSS theme. Expects an optional `.json` entry file and an optional `.css` output file."
